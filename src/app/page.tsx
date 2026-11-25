@@ -8,7 +8,7 @@ export default function Home() {
       <Hero />
       <Chapters />
       <ClosingCTA />
-      <footer className="relative flex flex-col gap-3 border-t border-ink/10 px-5 py-8 text-xs uppercase tracking-[0.24em] text-ink/40 md:flex-row md:items-center md:justify-between md:px-10">
+      <footer className="relative flex flex-col gap-3 border-t border-ink/10 px-5 py-8 hud md:flex-row md:items-center md:justify-between md:px-10">
         <span>© 2026 Lil G Web</span>
         <span>Design · 3D · Motion</span>
       </footer>

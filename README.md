@@ -9,7 +9,7 @@ Portfolio site for **Lil G Web**: digital objects & web worlds. It's a single-pa
 - **GSAP** + `ScrollTrigger` + `@gsap/react` (`useGSAP`)
 - **Lenis**, driven by `gsap.ticker` (no separate rAF loop)
 - **Framer Motion**: preloader and inquiry drawer
-- **React Three Fiber** + **drei** + **three**: all 3D is procedural (no `.glb`, HDR or image files)
+- **React Three Fiber** + **drei** + **three**: a hummingbird `.glb` (`public/models/hummingbird.glb`) hovering over a procedural frosted-glass trumpet flower; lighting is procedural (no HDR files)
 
 ## Scripts
 
@@ -30,7 +30,7 @@ src/
     SmoothScroll.tsx   Lenis on gsap.ticker, scroll lock during preloader + drawer
     Preloader.tsx      0–100% counter, "Skip"
     Scene.tsx          next/dynamic(..., { ssr: false }) wrapper for the canvas
-    three/             SceneCanvas (lights, camera rig, procedural env), Blossom + GLSL
+    three/             SceneCanvas (lights, camera, bird flight), Hummingbird (useGLTF), GlassFlower
     Hero.tsx           character-level reveal
     Chapters.tsx       pinned, scrubbed 4-statement sequence (orbits the camera)
     ClosingCTA.tsx     "Inquire about a project"
@@ -42,7 +42,8 @@ src/
 
 ## Notes
 
-- **Press the glass:** pointer-down anywhere that isn't a control sends a ripple through the form at the pressed point. Pointer movement shifts the violet/cyan fill lights and rotates the environment reflections.
+- **Hummingbird model:** place it at `public/models/hummingbird.glb`. It is auto-scaled and centred; an embedded hover/idle clip plays automatically, otherwise a procedural hover is used. If the beak doesn't face the flower, adjust `MODEL_ROTATION` in `Hummingbird.tsx`.
+- **Press the glass:** pointer-down anywhere that isn't a control makes the bird dart toward the nectar and flares the amber rim light.
 - **Reduced motion:** with `prefers-reduced-motion`, the preloader is shortened, character reveals become simple fades, the chapters render as plain flowing text (no pin), and idle 3D motion stops.
 - **Inquiry form:** submission is simulated client-side. To deliver real inquiries, connect `onSubmit` in `InquiryDrawer.tsx` to a Route Handler or a form service.
 

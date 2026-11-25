@@ -51,19 +51,19 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-end px-5 pb-10 pt-28 md:px-10 md:pb-14"
     >
       <div className="hero-inner w-full">
-        <h1 className="hero-title max-w-[14ch] font-display text-[13vw] leading-[0.92] tracking-[-0.03em] text-ink md:text-[8.4vw]">
-          <SplitChars text="Digital objects & web worlds." accent={["worlds"]} />
+        <h1 className="hero-title max-w-[14ch] font-display font-light tracking-[-0.04em] leading-[1.05] text-[12vw] text-ink md:text-[8.4vw]">
+          <SplitChars text="Digital projects & web worlds." accent={["worlds"]} />
         </h1>
         <div className="mt-8 flex flex-col gap-6 md:mt-10 md:flex-row md:items-end md:justify-between">
           <p className="hero-sub max-w-md text-lg text-ink/70 md:text-xl">
             <SplitChars text="Design, 3D, and interactive craft." />
           </p>
-          <p className="hero-cue flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-ink/55">
+          <p className="hero-cue hud flex items-center gap-3">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan/60 motion-reduce:animate-none" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
             </span>
-            Press the glass · Scroll to explore
+            Scroll to explore
           </p>
         </div>
       </div>

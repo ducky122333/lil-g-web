@@ -41,12 +41,12 @@ export function Preloader() {
           aria-live="polite"
           aria-label={`Entering Lil G Web, ${progress}%`}
         >
-          <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-ink/50">
+          <div className="hud flex items-center justify-between">
             <span>Lil G Web</span>
             <button
               type="button"
               onClick={skip}
-              className="rounded-full border border-ink/15 px-4 py-2 text-ink/70 transition-colors hover:border-ink/40 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="rounded-full border border-white/20 px-4 py-2 text-white/70 transition-colors hover:border-ink/40 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               Skip
             </button>
@@ -54,7 +54,7 @@ export function Preloader() {
 
           <div className="flex flex-col gap-6">
             <motion.p
-              className="font-display text-2xl italic text-ink/70 md:text-3xl"
+              className="text-2xl font-light tracking-[-0.03em] text-white/70 md:text-3xl"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: EASE }}
@@ -63,7 +63,7 @@ export function Preloader() {
             </motion.p>
             <div className="flex items-end justify-between gap-6">
               <span
-                className="font-display text-[22vw] leading-[0.8] tabular-nums text-ink md:text-[14vw]"
+                className="text-[22vw] font-light leading-[0.85] tracking-[-0.05em] tabular-nums text-ink md:text-[14vw]"
                 aria-hidden
               >
                 {progress}

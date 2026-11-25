@@ -72,7 +72,7 @@ export function InquiryDrawer() {
             transition={{ duration, ease: EASE }}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs uppercase tracking-[0.3em] text-ink/50">New commission</span>
+              <span className="hud">New commission</span>
               <button type="button" onClick={close} className="rounded-full border border-ink/15 px-4 py-2 text-sm text-ink/70 transition-colors hover:border-ink/40 hover:text-ink">
                 Close
               </button>
@@ -89,8 +89,8 @@ export function InquiryDrawer() {
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.4, ease: EASE }}
                 >
-                  <h2 id="inquiry-title" className="font-display text-5xl leading-[0.95] text-ink md:text-6xl">
-                    Inquire about a <em className="text-iris">project</em>
+                  <h2 id="inquiry-title" className="text-5xl font-light leading-[1.05] tracking-[-0.04em] text-ink md:text-6xl">
+                    Inquire about a <span className="text-iris">project</span>
                   </h2>
                   <p className="mt-4 max-w-sm text-ink/60">Tell us what you&rsquo;re imagining. We reply to every note within two working days.</p>
 
@@ -126,7 +126,7 @@ export function InquiryDrawer() {
                   <div className="mb-8 h-16 w-16 rounded-full bg-[conic-gradient(from_120deg,#ffb347,#8b5cf6,#22d3ee,#ffb347)] p-px">
                     <div className="flex h-full w-full items-center justify-center rounded-full bg-[#0b0a12] text-2xl text-ink">✓</div>
                   </div>
-                  <h2 id="inquiry-title" className="font-display text-5xl leading-[0.95] text-ink md:text-6xl">
+                  <h2 id="inquiry-title" className="text-5xl font-light leading-[1.05] tracking-[-0.04em] text-ink md:text-6xl">
                     Thank you{name ? `, ${name}` : ""}.
                   </h2>
                   <p className="mt-5 max-w-sm text-ink/60">Your vision is in. We&rsquo;ll be in touch within two working days to talk light, form, and motion.</p>

@@ -4,7 +4,7 @@ type Props = {
   text: string;
   as?: ElementType;
   className?: string;
-  /** Words to render in the italic display accent. */
+  /** Words to render in the iridescent gradient accent. */
   accent?: string[];
 };
 

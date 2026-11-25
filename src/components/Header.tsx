@@ -19,9 +19,9 @@ export function Header() {
           e.preventDefault();
           lenis?.scrollTo(0);
         }}
-        className="font-display text-xl tracking-tight text-ink md:text-2xl"
+        className="text-xl font-normal lowercase tracking-[-0.02em] text-white md:text-2xl"
       >
-        Lil G Web
+        lil g web
       </a>
       <button type="button" onClick={openDrawer} className="glass-pill">
         <span className="relative z-10">Start a project</span>

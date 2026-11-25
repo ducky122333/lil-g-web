@@ -7,7 +7,7 @@ import { useApp } from "./AppProvider";
 import { SplitChars } from "./SplitChars";
 
 const CHAPTERS = [
-  { label: "Studio", text: "Lil G Web. Design, 3D, and motion for the web.", accent: ["motion"] },
+  { label: "Studio", text: "Lil G Web. Designs for the web.", accent: ["web"] },
   { label: "Material", text: "Every surface catches the light differently.", accent: ["light"] },
   { label: "Craft", text: "Bespoke interfaces built to linger in memory.", accent: ["memory"] },
   { label: "Now", text: "Select commissions open. Tell us what you're imagining.", accent: ["imagining"] },
@@ -74,7 +74,7 @@ export function Chapters() {
     return (
       <section aria-label="Studio chapters" className="relative z-10 space-y-[30vh] px-5 py-[30vh] md:px-10">
         {CHAPTERS.map((c) => (
-          <p key={c.label} className="max-w-[18ch] font-display text-[9vw] leading-[1] text-ink md:text-[5.4vw]">
+          <p key={c.label} className="max-w-[18ch] font-display font-light tracking-[-0.04em] leading-[1.05] text-[9vw] text-ink md:text-[5.4vw]">
             {c.text}
           </p>
         ))}
@@ -84,9 +84,9 @@ export function Chapters() {
 
   return (
     <section ref={root} aria-label="Studio chapters" className="relative h-[100svh] overflow-hidden">
-      <div className="absolute inset-x-5 top-24 flex items-center justify-between text-xs uppercase tracking-[0.28em] text-ink/50 md:inset-x-10 md:top-28">
+      <div className="hud absolute inset-x-5 top-24 flex items-center justify-between md:inset-x-10 md:top-28">
         <span>
-          <span className="chapter-index tabular-nums text-ink">01</span> / {String(CHAPTERS.length).padStart(2, "0")}
+          <span className="chapter-index tabular-nums text-white">01</span> / {String(CHAPTERS.length).padStart(2, "0")}
         </span>
         <span className="relative h-4 w-28">
           {CHAPTERS.map((c) => (
@@ -105,7 +105,7 @@ export function Chapters() {
               as="p"
               text={c.text}
               accent={c.accent}
-              className={`chapter ${i === 0 ? "relative" : "absolute inset-x-0 top-0"} max-w-[18ch] font-display text-[10vw] leading-[1] tracking-[-0.02em] text-ink md:text-[6vw]`}
+              className={`chapter ${i === 0 ? "relative" : "absolute inset-x-0 top-0"} max-w-[18ch] font-display font-light tracking-[-0.04em] leading-[1.05] text-[9.5vw] text-ink md:text-[6vw]`}
             />
           ))}
         </div>

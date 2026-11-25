@@ -11,8 +11,6 @@ export const sceneState = {
   pointer: { x: 0, y: 0 },
   /** Press energy, decays to 0 each frame. */
   press: 0,
-  /** Set when the user presses; consumed by the scene to aim the ripple. */
-  pressAt: null as { x: number; y: number } | null,
   /** Mirrors prefers-reduced-motion. */
   reducedMotion: false,
 };

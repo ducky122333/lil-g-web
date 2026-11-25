@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { AppProvider } from "@/components/AppProvider";
 import { Header } from "@/components/Header";
 import { InquiryDrawer } from "@/components/InquiryDrawer";
@@ -8,20 +8,20 @@ import { Scene } from "@/components/Scene";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
-  title: "Lil G Web — Digital objects & web worlds",
+  title: "Lil G Web — Digital projects & web worlds",
   description: "Lil G Web is a studio for design, 3D, and interactive craft on the web.",
   openGraph: {
     title: "Lil G Web",
@@ -37,7 +37,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${instrumentSerif.variable} antialiased`}>
+    <html lang="en" className={`${jakarta.variable} ${jetbrains.variable} antialiased`}>
       <body className="min-h-full bg-obsidian">
         <AppProvider>
           <SmoothScroll />
