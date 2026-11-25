@@ -31,7 +31,7 @@ export function ClosingCTA() {
         Let&rsquo;s make something that <span className="text-iris">glows</span>.
       </h2>
       <button type="button" onClick={openDrawer} className="cta-reveal relative glass-pill glass-pill--lg mt-12">
-        <span className="relative z-10">Inquire about a project</span>
+        <span className="relative z-10">Start a conversation</span>
         <span aria-hidden className="relative z-10 text-lg leading-none">&rarr;</span>
       </button>
     </section>

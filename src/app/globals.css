@@ -13,7 +13,9 @@
 
 /* Iridescent gradient text for accent words. */
 @utility text-iris {
-  background-image: linear-gradient(100deg, #ffb347 0%, #f472b6 30%, #8b5cf6 60%, #22d3ee 100%);
+  background-image: linear-gradient(100deg, #ffb347, #f472b6, #8b5cf6, #22d3ee, #8b5cf6, #f472b6, #ffb347);
+  background-size: 300% 100%;
+  animation: iris-shift 14s ease-in-out infinite alternate;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -72,9 +74,16 @@ html.lenis body {
   will-change: transform, opacity;
   transform-origin: 50% 100%;
 }
+/* Accent words drift slowly through the palette; letters are offset into a soft wave. */
+@keyframes iris-shift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
 .char.accent {
-  background-image: linear-gradient(100deg, #ffb347 0%, #f472b6 30%, #8b5cf6 60%, #22d3ee 100%);
-  background-size: 400% 100%;
+  background-image: linear-gradient(100deg, #ffb347, #f472b6, #8b5cf6, #22d3ee, #8b5cf6, #f472b6, #ffb347);
+  background-size: 300% 100%;
+  animation: iris-shift 14s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i, 0) * -0.35s);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -159,6 +168,10 @@ html.lenis body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .char.accent,
+  .text-iris {
+    animation: none !important;
+  }
   *,
   *::before,
   *::after {

@@ -7,10 +7,10 @@ import { useApp } from "./AppProvider";
 import { SplitChars } from "./SplitChars";
 
 const CHAPTERS = [
-  { label: "Studio", text: "Lil G Web. Designs for the web.", accent: ["web"] },
-  { label: "Material", text: "Every surface catches the light differently.", accent: ["light"] },
+  { label: "Studio", text: "Lil G Web designs for form, motion, and digital craft.", accent: ["craft"] },
+  { label: "Material", text: "A boutique studio for interactive 3D and spatial design.", accent: ["spatial"] },
   { label: "Craft", text: "Bespoke interfaces built to linger in memory.", accent: ["memory"] },
-  { label: "Now", text: "Select commissions open. Tell us what you're imagining.", accent: ["imagining"] },
+  { label: "Now", text: "Select commissions now open. Tell us what you're imagining.", accent: ["imagining"] },
 ];
 
 export function Chapters() {

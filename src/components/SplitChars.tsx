@@ -18,10 +18,15 @@ export function SplitChars({ text, as: Tag = "span", className, accent = [] }: P
     <Tag className={className} aria-label={text}>
       {words.map((word, wi) => {
         const isAccent = accent.includes(word.replace(/[^\w']/g, ""));
+        const before = words.slice(0, wi).join(" ").length;
         return (
           <span key={wi} aria-hidden className="split-word">
             {Array.from(word).map((ch, ci) => (
-              <span key={ci} className={`char${isAccent ? " accent" : ""}`}>
+              <span
+                key={ci}
+                className={`char${isAccent ? " accent" : ""}`}
+                style={isAccent ? ({ "--i": before + ci } as React.CSSProperties) : undefined}
+              >
                 {ch}
               </span>
             ))}
