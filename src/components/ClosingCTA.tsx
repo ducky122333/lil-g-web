@@ -28,10 +28,10 @@ export function ClosingCTA() {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_40%_at_50%_50%,rgba(5,5,7,0.78),rgba(5,5,7,0.35)_60%,transparent_80%)]" />
       <p className="cta-reveal hud relative mb-8">Commissions · 2026</p>
       <h2 className="cta-reveal relative max-w-[16ch] font-display font-light tracking-[-0.04em] leading-[1.05] text-[10vw] text-ink md:text-[6.5vw]">
-        Let&rsquo;s make something that <span className="text-iris">glows</span>.
+        Start a <span className="text-iris">conversation</span>.
       </h2>
       <button type="button" onClick={openDrawer} className="cta-reveal relative glass-pill glass-pill--lg mt-12">
-        <span className="relative z-10">Start a conversation</span>
+        <span className="relative z-10">Inquire about a project</span>
         <span aria-hidden className="relative z-10 text-lg leading-none">&rarr;</span>
       </button>
     </section>

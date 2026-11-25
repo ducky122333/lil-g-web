@@ -32,7 +32,7 @@ src/
     three/             SceneCanvas (lights, camera, bird flight), Hummingbird (useGLTF), GlassFlower
     Hero.tsx           character-level reveal
     Chapters.tsx       pinned, scrubbed 4-statement sequence (orbits the camera)
-    ClosingCTA.tsx     "Start a conversation"
+    ClosingCTA.tsx     "Start a conversation" + "Inquire about a project"
     InquiryDrawer.tsx  slide-over form with a confirmation state
   lib/
     gsap.ts            client-only plugin registration

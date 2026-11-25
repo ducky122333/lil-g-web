@@ -1,6 +1,6 @@
 "use client";
 
-import { Environment, Lightformer } from "@react-three/drei";
+import { Environment, Lightformer, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
@@ -198,6 +198,7 @@ export default function SceneCanvas() {
             </BirdFlight>
           </Suspense>
         </ModelBoundary>
+        <Sparkles count={36} color="#ffd9a0" size={2.2} scale={[4, 3, 3]} position={[0.2, 0, 0]} speed={0.25} opacity={0.6} />
       </Composition>
     </Canvas>
   );
