@@ -13,25 +13,22 @@ export function Hero() {
     () => {
       const headline = gsap.utils.toArray<HTMLElement>(".hero-title .char");
       const sub = gsap.utils.toArray<HTMLElement>(".hero-sub .char");
-      const cue = ".hero-cue";
 
       if (reducedMotion) {
-        gsap.set([headline, sub, cue], { opacity: loaded ? 1 : 0 });
+        gsap.set([headline, sub], { opacity: loaded ? 1 : 0 });
         return;
       }
 
       if (!loaded) {
         gsap.set(headline, { yPercent: 115, rotate: 8, opacity: 0 });
         gsap.set(sub, { yPercent: 100, opacity: 0 });
-        gsap.set(cue, { opacity: 0, y: 12 });
         return;
       }
 
       gsap
         .timeline({ defaults: { ease: "expo.out" }, delay: 0.25 })
         .to(headline, { yPercent: 0, rotate: 0, opacity: 1, duration: 1.4, stagger: 0.028 })
-        .to(sub, { yPercent: 0, opacity: 1, duration: 1, stagger: 0.012 }, "-=1.0")
-        .to(cue, { opacity: 1, y: 0, duration: 1 }, "-=0.6");
+        .to(sub, { yPercent: 0, opacity: 1, duration: 1, stagger: 0.012 }, "-=1.0");
 
       // Drift the hero copy away as the user starts scrolling.
       gsap.to(".hero-inner", {
@@ -57,13 +54,6 @@ export function Hero() {
         <div className="mt-8 flex flex-col gap-6 md:mt-10 md:flex-row md:items-end md:justify-between">
           <p className="hero-sub max-w-md text-lg text-ink/70 md:text-xl">
             <SplitChars text="Design, 3D, and interactive craft." />
-          </p>
-          <p className="hero-cue hud flex items-center gap-3">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan/60 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
-            </span>
-            Scroll to explore
           </p>
         </div>
       </div>

@@ -100,21 +100,21 @@ html.lenis body {
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   overflow: hidden;
   isolation: isolate;
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s;
+  /* Own compositing layer so the rounded clip holds while the hover fades in. */
+  transform: translateZ(0);
+  transition: border-color 0.3s;
 }
 .glass-pill::before {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: conic-gradient(from 180deg, #ffb347, #f472b6, #8b5cf6, #22d3ee, #ffb347);
   opacity: 0;
   transition: opacity 0.4s;
   mix-blend-mode: soft-light;
 }
 .glass-pill:hover {
-  transform: translateY(-1px);
   border-color: rgba(255, 255, 255, 0.32);
 }
 .glass-pill:hover::before {

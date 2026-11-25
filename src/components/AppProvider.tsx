@@ -5,6 +5,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -13,7 +14,6 @@ import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 type AppContextValue = {
   loaded: boolean;
-  finishLoading: () => void;
   drawerOpen: boolean;
   openDrawer: () => void;
   closeDrawer: () => void;
@@ -30,14 +30,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
   const reducedMotion = usePrefersReducedMotion();
 
-  const finishLoading = useCallback(() => setLoaded(true), []);
+  // No loading screen: reveal the page on the first frame after hydration.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setLoaded(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
   const openDrawer = useCallback(() => setDrawerOpen(true), []);
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
   const value = useMemo(
     () => ({
       loaded,
-      finishLoading,
       drawerOpen,
       openDrawer,
       closeDrawer,
@@ -45,7 +48,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setLenis,
       reducedMotion,
     }),
-    [loaded, finishLoading, drawerOpen, openDrawer, closeDrawer, lenis, reducedMotion],
+    [loaded, drawerOpen, openDrawer, closeDrawer, lenis, reducedMotion],
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -124,11 +124,11 @@ export function GlassFlower(props: React.ComponentProps<"group">) {
         {stamens.map((s, i) => (
           <group key={i}>
             <mesh geometry={s.geometry}>
-              <meshStandardMaterial color="#f3d9a4" emissive="#ffb347" emissiveIntensity={0.35} roughness={0.4} />
+              <meshStandardMaterial color="#e9d3a6" roughness={0.5} />
             </mesh>
             <mesh position={s.tip} scale={0.022}>
               <sphereGeometry args={[1, 16, 12]} />
-              <meshStandardMaterial color="#ffd27a" emissive="#ffab3d" emissiveIntensity={1.4} roughness={0.3} />
+              <meshStandardMaterial color="#d9b26a" roughness={0.6} />
             </mesh>
           </group>
         ))}

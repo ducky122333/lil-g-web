@@ -1,6 +1,6 @@
 "use client";
 
-import { Environment, Lightformer, Sparkles } from "@react-three/drei";
+import { Environment, Lightformer } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
@@ -92,7 +92,7 @@ function BirdFlight({ children }: { children: React.ReactNode }) {
   const smooth = useRef({ c: 0 });
   const tmp = useRef(new THREE.Vector3());
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     const g = ref.current;
     if (!g) return;
     const dt = Math.min(delta, 0.05);
@@ -111,14 +111,18 @@ function BirdFlight({ children }: { children: React.ReactNode }) {
     g.position.y = THREE.MathUtils.damp(g.position.y, target.y, ease, dt);
     g.position.z = THREE.MathUtils.damp(g.position.z, target.z, ease, dt);
 
-    // Face the nectar (model's +Z is its beak) with a slight downward pitch.
-    const dx = NECTAR.x - g.position.x;
-    const dz = NECTAR.z - g.position.z;
-    const yaw = Math.atan2(dx, dz);
+    // Mostly face the viewer (model's +Z is its beak), glancing toward the
+    // nectar a little more as the chapters progress.
+    const cam = state.camera.position;
+    const yawCam = Math.atan2(cam.x - g.position.x, cam.z - g.position.z);
+    const yawNectar = Math.atan2(NECTAR.x - g.position.x, NECTAR.z - g.position.z);
+    const glance = 0.1 + Math.min(1, s.c) * 0.2 + sceneState.press * 0.4;
+    const between = Math.atan2(Math.sin(yawNectar - yawCam), Math.cos(yawNectar - yawCam));
+    const yaw = yawCam + between * glance + sceneState.pointer.x * 0.25;
     let diff = yaw - g.rotation.y;
     diff = Math.atan2(Math.sin(diff), Math.cos(diff));
     g.rotation.y += diff * Math.min(1, dt * 4);
-    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, 0.22, 3, dt);
+    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, 0.06 - sceneState.pointer.y * 0.12, 3, dt);
   });
 
   return <group ref={ref} position={[NECTAR.x - 0.5, NECTAR.y + 0.35, NECTAR.z + 0.35]}>{children}</group>;
@@ -194,7 +198,6 @@ export default function SceneCanvas() {
             </BirdFlight>
           </Suspense>
         </ModelBoundary>
-        <Sparkles count={36} color="#ffd9a0" size={2.2} scale={[4, 3, 3]} position={[0.2, 0, 0]} speed={0.25} opacity={0.6} />
       </Composition>
     </Canvas>
   );

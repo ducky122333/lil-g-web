@@ -3,7 +3,6 @@ import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { AppProvider } from "@/components/AppProvider";
 import { Header } from "@/components/Header";
 import { InquiryDrawer } from "@/components/InquiryDrawer";
-import { Preloader } from "@/components/Preloader";
 import { Scene } from "@/components/Scene";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import "./globals.css";
@@ -21,10 +20,10 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lil G Web — Digital projects & web worlds",
+  title: "Lil G Web - Custom Design Art Projects",
   description: "Lil G Web is a studio for design, 3D, and interactive craft on the web.",
   openGraph: {
-    title: "Lil G Web",
+    title: "Lil G Web - Custom Design Art Projects",
     description: "Design, 3D, and interactive craft.",
     type: "website",
   },
@@ -41,7 +40,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full bg-obsidian">
         <AppProvider>
           <SmoothScroll />
-          <Preloader />
           <Scene />
           <Header />
           <main className="relative z-10">{children}</main>

@@ -25,7 +25,6 @@ export function Header() {
       </a>
       <button type="button" onClick={openDrawer} className="glass-pill">
         <span className="relative z-10">Start a project</span>
-        <span aria-hidden className="relative z-10 inline-block h-1.5 w-1.5 rounded-full bg-amber shadow-[0_0_12px_#ffb347]" />
       </button>
     </motion.header>
   );

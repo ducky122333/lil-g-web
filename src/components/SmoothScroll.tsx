@@ -8,7 +8,7 @@ import { useApp } from "./AppProvider";
 
 /**
  * Lenis driven entirely by gsap.ticker — no separate requestAnimationFrame loop.
- * Scroll stays locked while the preloader runs or the drawer is open.
+ * Scroll stays locked until the page reveals and while the drawer is open.
  */
 export function SmoothScroll() {
   const { lenis, setLenis, loaded, drawerOpen, reducedMotion } = useApp();
