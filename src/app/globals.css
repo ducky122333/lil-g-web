@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-obsidian: #050507;
+  --color-ink: #f4f1ec;
+  --color-amber: #ffb347;
+  --color-violet: #8b5cf6;
+  --color-cyan: #22d3ee;
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Iridescent gradient text for accent words. */
+@utility text-iris {
+  background-image: linear-gradient(100deg, #ffb347 0%, #f472b6 30%, #8b5cf6 60%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #050507;
+}
+
+html.is-locked {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #050507;
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.45);
+  color: #fff;
+}
+
+/* Lenis recommended base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Character split */
+.split-word {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: 50% 100%;
+}
+.char.accent {
+  background-image: linear-gradient(100deg, #ffb347 0%, #f472b6 30%, #8b5cf6 60%, #22d3ee 100%);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  padding-right: 0.02em;
+}
+
+/* Glassmorphic pill */
+.glass-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 9999px;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 10px 40px -12px rgba(139, 92, 246, 0.45);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s;
+}
+.glass-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 180deg, #ffb347, #f472b6, #8b5cf6, #22d3ee, #ffb347);
+  opacity: 0;
+  transition: opacity 0.4s;
+  mix-blend-mode: soft-light;
+}
+.glass-pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+.glass-pill:hover::before {
+  opacity: 0.9;
+}
+.glass-pill:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+.glass-pill--lg {
+  background: linear-gradient(135deg, rgba(20, 16, 34, 0.78), rgba(10, 9, 16, 0.6));
+  padding: 1.05rem 1.9rem;
+  font-size: 1.05rem;
+}
+
+/* Form fields */
+.field-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.5);
+}
+.field-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(244, 241, 236, 0.18);
+  background: transparent;
+  padding: 0.5rem 0 0.75rem;
+  font-size: 1.15rem;
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 0.3s;
+}
+.field-input::placeholder {
+  color: rgba(244, 241, 236, 0.28);
+}
+.field-input:focus {
+  border-bottom-color: var(--color-violet);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Keep copy legible over the glass */
+.chapter,
+.hero-title,
+.cta-reveal {
+  text-shadow: 0 2px 40px rgba(5, 5, 7, 0.65);
+}
+.char.accent {
+  text-shadow: none;
 }
