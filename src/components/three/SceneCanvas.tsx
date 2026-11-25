@@ -100,10 +100,10 @@ function BirdFlight({ children }: { children: React.ReactNode }) {
     s.c = THREE.MathUtils.damp(s.c, sceneState.chapters + sceneState.page * 0.3, 2, dt);
 
     const theta = -0.9 + s.c * Math.PI * 1.1;
-    const radius = 0.62 - sceneState.press * 0.22 - Math.sin(s.c * Math.PI) * 0.08;
+    const radius = 0.5 - sceneState.press * 0.2 - Math.sin(s.c * Math.PI) * 0.06;
     const target = tmp.current.set(
       NECTAR.x + Math.sin(theta) * radius + sceneState.pointer.x * 0.12,
-      NECTAR.y + 0.32 + Math.sin(s.c * Math.PI * 2) * 0.1 + sceneState.pointer.y * 0.08,
+      NECTAR.y + 0.34 + Math.sin(s.c * Math.PI * 2) * 0.08 + sceneState.pointer.y * 0.08,
       NECTAR.z + Math.cos(theta) * radius,
     );
     const ease = sceneState.reducedMotion ? 20 : 3.2;

@@ -9,7 +9,7 @@ import { sceneState } from "@/lib/sceneState";
 export const HUMMINGBIRD_URL = "/models/hummingbird.glb";
 
 /** Longest side of the bird after normalisation, in world units. */
-const TARGET_SIZE = 0.62;
+const TARGET_SIZE = 0.95;
 /**
  * Extra rotation applied to the raw model so its beak points along local +Z.
  * glTF models usually face +Z already; adjust here if your export differs.
@@ -18,6 +18,8 @@ const MODEL_ROTATION: [number, number, number] = [0, 0, 0];
 
 const NO_SHIMMER = /eye|pupil|iris|cornea|beak|bill|tongue/i;
 const IDLE_CLIP = /hover|idle|fly|flap|loop/i;
+/** Root-bone position tracks (e.g. "Root2_03.position") carry the flight path. */
+const ROOT_MOTION = /^(_?root[^.]*|Root[^.]*)\.position$/i;
 
 /** Swap standard materials for physical ones that keep every map and colour. */
 function enhanceMaterial(source: THREE.Material, shimmer: boolean) {
@@ -42,12 +44,24 @@ export function Hummingbird(props: React.ComponentProps<"group">) {
   const { scene, animations } = useGLTF(HUMMINGBIRD_URL);
   const rig = useRef<THREE.Group>(null);
   const time = useRef(0);
-  const { actions, names } = useAnimations(animations, rig);
+  // Drop root-motion translation so the clip flaps in place and the scroll
+  // choreography alone decides where the bird flies.
+  const clips = useMemo(
+    () =>
+      animations.map((clip) => {
+        const c = clip.clone();
+        c.tracks = c.tracks.filter((t) => !ROOT_MOTION.test(t.name));
+        return c;
+      }),
+    [animations],
+  );
+  const { actions, names } = useAnimations(clips, rig);
   const isStatic = animations.length === 0;
 
   // Normalise: scale the longest side to TARGET_SIZE and centre on the origin.
   const fit = useMemo(() => {
-    const box = new THREE.Box3().setFromObject(scene);
+    scene.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(scene, true);
     const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
     const scale = TARGET_SIZE / Math.max(size.x, size.y, size.z, 1e-6);
@@ -60,6 +74,8 @@ export function Hummingbird(props: React.ComponentProps<"group">) {
       const mesh = obj as THREE.Mesh;
       if (!mesh.isMesh) return;
       mesh.castShadow = false;
+      // Skinned bounds go stale as bones animate; never cull the bird.
+      mesh.frustumCulled = false;
       const shimmer = !NO_SHIMMER.test(mesh.name);
       const swap = (m: THREE.Material) => enhanceMaterial(m, shimmer && !NO_SHIMMER.test(m.name));
       mesh.material = Array.isArray(mesh.material) ? mesh.material.map(swap) : swap(mesh.material);
