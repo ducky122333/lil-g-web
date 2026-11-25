@@ -49,7 +49,7 @@ export function Hero() {
     >
       <div className="hero-inner w-full">
         <h1 className="hero-title max-w-[14ch] font-display font-light tracking-[-0.04em] leading-[1.05] text-[12vw] text-ink md:text-[8.4vw]">
-          <SplitChars text="Digital projects & web worlds." accent={["worlds"]} />
+          <SplitChars text="Custom Design Art Projects." accent={["Projects"]} />
         </h1>
         <div className="mt-8 flex flex-col gap-6 md:mt-10 md:flex-row md:items-end md:justify-between">
           <p className="hero-sub max-w-md text-lg text-ink/70 md:text-xl">
