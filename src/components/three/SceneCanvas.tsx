@@ -89,6 +89,7 @@ function CameraRig() {
  */
 function BirdFlight({ children }: { children: React.ReactNode }) {
   const ref = useRef<THREE.Group>(null);
+  const spinRef = useRef<THREE.Group>(null);
   const smooth = useRef({ c: 0 });
   const tmp = useRef(new THREE.Vector3());
 
@@ -123,9 +124,20 @@ function BirdFlight({ children }: { children: React.ReactNode }) {
     diff = Math.atan2(Math.sin(diff), Math.cos(diff));
     g.rotation.y += diff * Math.min(1, dt * 4);
     g.rotation.x = THREE.MathUtils.damp(g.rotation.x, 0.06 - sceneState.pointer.y * 0.12, 3, dt);
+
+    // One full turn across the chapters: profile, back, other profile, and
+    // facing the viewer again by the closing section.
+    if (spinRef.current) {
+      const q = THREE.MathUtils.smoothstep(s.c / 1.2, 0, 1);
+      spinRef.current.rotation.y = q * Math.PI * 2;
+    }
   });
 
-  return <group ref={ref} position={[NECTAR.x - 0.5, NECTAR.y + 0.35, NECTAR.z + 0.35]}>{children}</group>;
+  return (
+    <group ref={ref} position={[NECTAR.x - 0.5, NECTAR.y + 0.35, NECTAR.z + 0.35]}>
+      <group ref={spinRef}>{children}</group>
+    </group>
+  );
 }
 
 /** Scales the composition down on narrow portrait screens (vertical FOV). */
